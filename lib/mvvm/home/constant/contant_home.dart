@@ -1,0 +1,14 @@
+const String title = "RECEIPT";
+const String subTitle = "Diplomatik personel için GST hesaplama Uygulaması";
+const String total = "Toplam Miktar";
+const String gst = "Toplam GST";
+const String gstYetersiz = "GST miktari geri almak için yetersiz";
+const String gstalma = "GST miktari geri almak için yeterli";
+const String kaydet = "Kaydet";
+const String sil = "Sil";
+const String receiptKaydet = "Fişi Kaydet";
+const String appBarText = "GST hesaplama APP";
+const String fiyat = "Ürün Fiyatı";
+const String diger= "Diğer";
+const String temelGida = "Temel Gıda";
+const String urun = "Ürün";
