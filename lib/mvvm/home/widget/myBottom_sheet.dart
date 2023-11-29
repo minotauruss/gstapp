@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:gstapp/mvvm/home/home.dart';
-import 'package:gstapp/service/hive_service.dart';
-
 import '../constant/contant_home.dart';
 
+
+// ignore: must_be_immutable
 class MyBottomSheet extends StatefulWidget {
  Function(int,bool,double) saveFunction;
 
-  MyBottomSheet({required this.saveFunction});
+  MyBottomSheet({super.key, required this.saveFunction});
   @override
+  // ignore: library_private_types_in_public_api
   _MyBottomSheetState createState() => _MyBottomSheetState();
 }
 
 class _MyBottomSheetState extends State<MyBottomSheet> {
-  TextEditingController _controllerName = TextEditingController();
-  HiveService _hiveService = HiveService();
+  final TextEditingController _controllerName = TextEditingController();
   bool swichBotton = false;
   int m = 1;
   @override
@@ -22,8 +21,8 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
     return Padding(
       padding:
           EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.4,
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.45,
         width: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +39,7 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                     fillColor: Colors.white60,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12)),
-                    label: Text(fiyat)),
+                    label: const Text(fiyat)),
               ),
             )),
             Row(
@@ -48,23 +47,25 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 12),
-                  child: Text(temelGida),
+                  margin: const EdgeInsets.only(right: 12),
+                  child: const Text(temelGida),
                 ),
-                Container(
-                  child: Switch(
-                      value: swichBotton,
-                      onChanged: (value) {
-                        setState(() {
-                          swichBotton = !swichBotton;
-                        });
-                      }),
-                ),
+                Switch(
+                    value: swichBotton,
+                    onChanged: (value) {
+                      setState(() {
+                        swichBotton = !swichBotton;
+                      });
+                    }),
                 Container(
                   margin: EdgeInsets.only(left: 12),
-                  child: Text(diger),
+                  child: const Text(diger),
                 ),
               ],
+            ),
+            Container(
+              margin: const EdgeInsets.all(12.0),
+              child: Text( gstMuaf, textAlign: TextAlign.center,style: TextStyle(color: swichBotton==false? Colors.black:Colors.white.withOpacity(0)),),
             ),
             Container(
               child: Row(
@@ -74,58 +75,62 @@ class _MyBottomSheetState extends State<MyBottomSheet> {
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        m = m + 1;
+                          if (m > 1) {
+                          m = m - 1;
+                        }
                       });
                     },
-                    child: Text(
-                      "+",
+                      style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                    child: const Text(
+                      "-",
                       style: TextStyle(color: Colors.white),
                     ),
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  
                   ),
                   Center(
-                    child: Container(
+                    child: SizedBox(
                         height: 80,
                         width: 80,
                         child: Text(
                           m.toString(),
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 32, fontWeight: FontWeight.bold),
                         )),
                   ),
                   ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        if (m > 1) {
-                          m = m - 1;
-                        }
+                      
+                          m = m + 1;
+                        
                       });
                     },
-                    child: Text(
-                      "-",
+                        style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                    child: const Text(
+                      "+",
                       style: TextStyle(color: Colors.white),
                     ),
-                    style:
-                        ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                
                   ),
                 ],
               ),
             ),
             Container(
-                margin: EdgeInsets.all(12),
+                margin: const EdgeInsets.all(12),
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                   onPressed: () {
                   widget.saveFunction(m,swichBotton,double.parse(_controllerName.text));
-                   Navigator.push(context, MaterialPageRoute(builder:(context)=> Home()));
-                  },
-                  child: Text(
+                   //Navigator.push(context, MaterialPageRoute(builder:(context)=> Home()));
+                  }, style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                  child: const Text(
                     kaydet,
                     style: TextStyle(color: Colors.white),
                   ),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                 
                 ))
           ],
         ),

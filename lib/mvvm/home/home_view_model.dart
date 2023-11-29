@@ -48,7 +48,7 @@ abstract class HomeViewModel extends State<Home> {
 
   void deleteAll(){
     List <Product> listproduct = getAllProducts();
-    if(listproduct.length>0){
+    if(listproduct.isNotEmpty){
       for(var item in listproduct){
         delete(item.id);
       }

@@ -12,3 +12,4 @@ const String fiyat = "Ürün Fiyatı";
 const String diger= "Diğer";
 const String temelGida = "Temel Gıda";
 const String urun = "Ürün";
+const String gstMuaf = " GST muaf ürünler : süt, krema, peynir, yumurtalar, çay, kahve, et, meyve, sebzeler, bal, reçel, yağ";
